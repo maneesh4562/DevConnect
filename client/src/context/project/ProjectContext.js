@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from 'react';
-import axios from 'axios';
 import projectReducer from './projectReducer';
-
+import api from '../../utils/api';
 // Create context
 const ProjectContext = createContext();
 
@@ -21,7 +20,7 @@ export const ProjectProvider = ({ children }) => {
   // Get all projects
   const getProjects = async () => {
     try {
-      const res = await axios.get('/api/projects');
+      const res = await api.get('/api/projects');
 
       dispatch({
         type: 'GET_PROJECTS',
@@ -38,7 +37,7 @@ export const ProjectProvider = ({ children }) => {
   // Get project by ID
   const getProjectById = async (id) => {
     try {
-      const res = await axios.get(`/api/projects/${id}`);
+      const res = await api.get(`/api/projects/${id}`);
 
       dispatch({
         type: 'GET_PROJECT',
@@ -55,7 +54,7 @@ export const ProjectProvider = ({ children }) => {
   // Get projects by user ID
   const getProjectsByUser = async (userId) => {
     try {
-      const res = await axios.get(`/api/projects/user/${userId}`);
+      const res = await api.get(`/api/projects/user/${userId}`);
 
       dispatch({
         type: 'GET_USER_PROJECTS',
@@ -78,7 +77,7 @@ export const ProjectProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post('/api/projects', formData, config);
+      const res = await api.post('/api/projects', formData, config);
 
       dispatch({
         type: 'CREATE_PROJECT',
@@ -104,7 +103,7 @@ export const ProjectProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.put(`/api/projects/${id}`, formData, config);
+      const res = await api.put(`/api/projects/${id}`, formData, config);
 
       dispatch({
         type: 'UPDATE_PROJECT',
@@ -124,7 +123,7 @@ export const ProjectProvider = ({ children }) => {
   // Delete project
   const deleteProject = async (id) => {
     try {
-      await axios.delete(`/api/projects/${id}`);
+      await api.delete(`/api/projects/${id}`);
 
       dispatch({
         type: 'DELETE_PROJECT',
@@ -141,7 +140,7 @@ export const ProjectProvider = ({ children }) => {
   // Get comments for a project
   const getComments = async (projectId) => {
     try {
-      const res = await axios.get(`/api/projects/${projectId}/comments`);
+      const res = await api.get(`/api/projects/${projectId}/comments`);
 
       dispatch({
         type: 'GET_COMMENTS',
@@ -164,7 +163,7 @@ export const ProjectProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post(
+      const res = await api.post(
         `/api/projects/${projectId}/comments`,
         { text },
         config
@@ -188,7 +187,7 @@ export const ProjectProvider = ({ children }) => {
   // Delete comment
   const deleteComment = async (commentId) => {
     try {
-      await axios.delete(`/api/comments/${commentId}`);
+      await api.delete(`/api/comments/${commentId}`);
 
       dispatch({
         type: 'DELETE_COMMENT',

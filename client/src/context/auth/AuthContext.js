@@ -1,8 +1,7 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
 import authReducer from './authReducer';
 import setAuthToken from '../../utils/setAuthToken';
-
+import api from '../../utils/api';
 // Create context
 const AuthContext = createContext();
 
@@ -25,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.get('/api/auth/me');
+      const res = await api.get('/api/auth/me');
 
       dispatch({
         type: 'USER_LOADED',
@@ -47,7 +46,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post('/api/users', formData, config);
+      const res = await api.post('/api/users', formData, config);
 
       dispatch({
         type: 'REGISTER_SUCCESS',
@@ -72,7 +71,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     try {
-      const res = await axios.post('/api/auth/login', formData, config);
+      const res = await api.post('/api/auth/login', formData, config);
 
       dispatch({
         type: 'LOGIN_SUCCESS',
