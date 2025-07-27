@@ -125,16 +125,3 @@ DevConnect is a platform for developers to connect, share projects, and build a 
 
 ### Search
 - `GET /api/search?q=query` - Search for users and projects
-
-## License
-
-This project is licensed under the MIT License.
-
-## Acknowledgements
-
-- [React](https://reactjs.org/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Heroicons](https://heroicons.com/)
-- [Headless UI](https://headlessui.dev/)
